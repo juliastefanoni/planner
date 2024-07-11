@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "ebbc9c1c-af4f-42f5-acfb-0f8f8cc7151e",
+		"name": "Planner Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14009294"
+	},
+	"item": [
+		{
+			"name": "Criar viagem",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"last_trip_created\", jsonData.tripId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"destination\": \"Itanhaém, SP\",\n    \"starts_at\": \"2024-06-25T21:51:54.734Z\",\n    \"ends_at\": \"2024-06-25T21:51:54.734Z\",\n    \"emails_to_invite\": [\n        \"juliastefanonidev@gmail.com\"\n    ],\n    \"owner_name\": \"Julia Stefanoni\",\n    \"owner_email\": \"juliastefanonims@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/trips",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar viagem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/trips/{{last_trip_created}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trips",
+						"{{last_trip_created}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "last_trip_created",
+			"value": ""
+		}
+	]
+}
