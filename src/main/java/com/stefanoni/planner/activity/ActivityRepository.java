@@ -1,4 +1,4 @@
-package com.stefanoni.planner.activities;
+package com.stefanoni.planner.activity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

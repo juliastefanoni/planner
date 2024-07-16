@@ -1,4 +1,4 @@
-package com.stefanoni.planner.activities;
+package com.stefanoni.planner.activity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

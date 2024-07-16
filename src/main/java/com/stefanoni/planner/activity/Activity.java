@@ -1,4 +1,4 @@
-package com.stefanoni.planner.activities;
+package com.stefanoni.planner.activity;
 
 import com.stefanoni.planner.trip.Trip;
 import jakarta.persistence.*;

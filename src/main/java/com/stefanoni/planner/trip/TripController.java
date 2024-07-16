@@ -1,9 +1,9 @@
 package com.stefanoni.planner.trip;
 
-import com.stefanoni.planner.activities.ActivityData;
-import com.stefanoni.planner.activities.ActivityRequestPayload;
-import com.stefanoni.planner.activities.ActivityResponse;
-import com.stefanoni.planner.activities.ActivityService;
+import com.stefanoni.planner.activity.ActivityData;
+import com.stefanoni.planner.activity.ActivityRequestPayload;
+import com.stefanoni.planner.activity.ActivityResponse;
+import com.stefanoni.planner.activity.ActivityService;
 import com.stefanoni.planner.participant.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
