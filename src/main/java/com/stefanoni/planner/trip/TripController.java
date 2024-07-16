@@ -4,6 +4,7 @@ import com.stefanoni.planner.activity.ActivityData;
 import com.stefanoni.planner.activity.ActivityRequestPayload;
 import com.stefanoni.planner.activity.ActivityResponse;
 import com.stefanoni.planner.activity.ActivityService;
+import com.stefanoni.planner.link.*;
 import com.stefanoni.planner.participant.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class TripController {
 
     @Autowired
     private ActivityService activityService;
+
+    @Autowired
+    private LinkService linkService;
 
     @Autowired
     private TripRepository repository;
@@ -83,6 +87,29 @@ public class TripController {
         return trip.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/{id}/activities")
+    public ResponseEntity<ActivityResponse> registerActivity(@PathVariable UUID id, @RequestBody ActivityRequestPayload payload) {
+        Optional<Trip> trip = this.repository.findById(id);
+
+        if(trip.isPresent()) {
+            Trip rawTrip = trip.get();
+
+            ActivityResponse activityResponse = this.activityService.registerActivity(payload, rawTrip);
+
+            return ResponseEntity.ok(activityResponse);
+
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/activities")
+    public ResponseEntity<List<ActivityData>> getAllActivities(@PathVariable UUID id) {
+        List<ActivityData> activityDataList = this.activityService.getAllActivitiesFromId(id);
+
+        return ResponseEntity.ok(activityDataList);
+    }
+
     @PostMapping("/{id}/invite")
     public ResponseEntity<ParticipantCreateResponse> inviteParticipant(@PathVariable UUID id, @RequestBody ParticipantRequestPayload payload) {
         Optional<Trip> trip = this.repository.findById(id);
@@ -107,26 +134,26 @@ public class TripController {
         return ResponseEntity.ok(participants);
     }
 
-    @PostMapping("/{id}/activities")
-    public ResponseEntity<ActivityResponse> registerActivity(@PathVariable UUID id, @RequestBody ActivityRequestPayload payload) {
+    @PostMapping("/{id}/links")
+    public ResponseEntity<LinkResponse> registerLink(@PathVariable UUID id, @RequestBody LinkRequestPayload payload) {
         Optional<Trip> trip = this.repository.findById(id);
 
         if(trip.isPresent()) {
             Trip rawTrip = trip.get();
 
-            ActivityResponse activityResponse = this.activityService.registerActivity(payload, rawTrip);
+            LinkResponse linkResponse = this.linkService.registerLink(payload, rawTrip);
 
-            return ResponseEntity.ok(activityResponse);
+            return ResponseEntity.ok(linkResponse);
 
         }
 
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{id}/activities")
-    public ResponseEntity<List<ActivityData>> getAllActivities(@PathVariable UUID id) {
-        List<ActivityData> activityDataList = this.activityService.getAllActivitiesFromId(id);
+    @GetMapping("/{id}/links")
+    public ResponseEntity<List<LinkData>> getAllLinks(@PathVariable UUID id) {
+        List<LinkData> linkDataList = this.linkService.getAllLinksFromTrip(id);
 
-        return ResponseEntity.ok(activityDataList);
+        return ResponseEntity.ok(linkDataList);
     }
 }
