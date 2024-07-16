@@ -7,204 +7,322 @@
 	},
 	"item": [
 		{
-			"name": "Criar viagem",
-			"event": [
+			"name": "Viagem",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();",
-							"",
-							"pm.collectionVariables.set(\"last_trip_created\", jsonData.tripId);"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"destination\": \"Itanhaém, SP\",\n    \"starts_at\": \"2024-06-25T21:51:54.734Z\",\n    \"ends_at\": \"2024-06-25T21:51:54.734Z\",\n    \"emails_to_invite\": [\n        \"juliastefanonidev@gmail.com\",\n        \"maya@gmail.com\"\n    ],\n    \"owner_name\": \"Julia Stefanoni\",\n    \"owner_email\": \"juliastefanonims@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Criar viagem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"last_trip_created\", jsonData.tripId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/trips",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"trips"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Atualizar viagem",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destination\": \"Itanhaém, SP\",\n    \"starts_at\": \"2024-06-25T21:51:54.734Z\",\n    \"ends_at\": \"2024-06-25T21:51:54.734Z\",\n    \"emails_to_invite\": [\n        \"juliastefanonidev@gmail.com\",\n        \"maya@gmail.com\"\n    ],\n    \"owner_name\": \"Julia Stefanoni\",\n    \"owner_email\": \"juliastefanonims@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();",
-							"",
-							"pm.collectionVariables.set(\"last_trip_created\", jsonData.tripId);"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"destination\": \"Porto Alegre, SP\",\n    \"starts_at\": \"2024-06-25T21:51:54.734Z\",\n    \"ends_at\": \"2024-06-25T21:51:54.734Z\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Atualizar viagem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"last_trip_created\", jsonData.tripId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/trips/{{last_trip_created}}",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"trips",
-						"{{last_trip_created}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar viagem",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/trips/{{last_trip_created}}",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"trips",
-						"{{last_trip_created}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar participantes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/trips/{{last_trip_created}}/participants",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"trips",
-						"{{last_trip_created}}",
-						"participants"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Confirmar participante",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Julinha tamojunto\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destination\": \"Porto Alegre, SP\",\n    \"starts_at\": \"2024-06-25T21:51:54.734Z\",\n    \"ends_at\": \"2024-06-25T21:51:54.734Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/participants/{{last_trip_created}}/confirm",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"participants",
-						"{{last_trip_created}}",
-						"confirm"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Convida participante",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"juliastefanonidev123@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Buscar viagem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/trips/{{last_trip_created}}/invite",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"trips",
-						"{{last_trip_created}}",
-						"invite"
-					]
+				{
+					"name": "Confirmar viagem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/confirm",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"confirm"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Confirmar viagem",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/trips/{{last_trip_created}}/confirm",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"trips",
-						"{{last_trip_created}}",
-						"confirm"
-					]
+			"name": "Participante",
+			"item": [
+				{
+					"name": "Convida participante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"juliastefanonidev123@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/invite",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"invite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar participante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Maya fofinha\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/participants/94a75dd9-662a-4ce4-917e-632710b53b66/confirm",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"participants",
+								"94a75dd9-662a-4ce4-917e-632710b53b66",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar participantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/participants",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"participants"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Atividade",
+			"item": [
+				{
+					"name": "Criar atividade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Visita a peg pão\",\n    \"occurs_at\": \"2024-06-25T21:51:54.734Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/activities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar atividades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/activities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"activities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Link",
+			"item": [
+				{
+					"name": "Criar link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Visita a peg pão\",\n    \"url\": \"url_teste.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/links",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"links"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar links",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/{{last_trip_created}}/links",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"{{last_trip_created}}",
+								"links"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [
