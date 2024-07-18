@@ -6,6 +6,7 @@ import com.stefanoni.planner.activity.ActivityResponse;
 import com.stefanoni.planner.activity.ActivityService;
 import com.stefanoni.planner.link.*;
 import com.stefanoni.planner.participant.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,13 @@ public class TripController {
     private TripRepository repository;
 
     @PostMapping
+    @Transactional
     public ResponseEntity<TripCreateResponse> createTrip(@RequestBody TripRequestPayload payload) {
         Trip newTrip = new Trip(payload);
+
+        if(newTrip.validateFields().equals(Boolean.FALSE)) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
 
         this.repository.save(newTrip);
 

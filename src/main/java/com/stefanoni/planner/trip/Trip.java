@@ -1,6 +1,8 @@
 package com.stefanoni.planner.trip;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Trip {
     private LocalDateTime startsAt;
 
     @Column(name = "ends_at", nullable = false)
+    @Future
     private LocalDateTime endsAt;
 
     @Column(name = "is_confirmed", nullable = false)
@@ -45,5 +48,9 @@ public class Trip {
         this.ownerName = data.owner_name();
         this.startsAt = LocalDateTime.parse(data.starts_at(), DateTimeFormatter.ISO_DATE_TIME);
         this.endsAt = LocalDateTime.parse(data.ends_at(), DateTimeFormatter.ISO_DATE_TIME);
+    }
+
+    public Boolean validateFields() {
+        return this.endsAt.isAfter(this.startsAt);
     }
 }
