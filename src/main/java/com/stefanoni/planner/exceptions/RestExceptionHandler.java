@@ -23,4 +23,17 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({
+            NotFoundException.class
+    })
+    public ResponseEntity<ApiError> notFoundException(RuntimeException ex) {
+        ApiError apiError = new ApiError(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.NOT_FOUND.name(),
+                List.of(ex.getMessage()));
+
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+    }
 }
